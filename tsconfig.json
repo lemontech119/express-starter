@@ -21,6 +21,7 @@
       "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
+      "@models/*": ["models/*"],
       "@utils/*": ["utils/*"]
     },
     "emitDecoratorMetadata": true,

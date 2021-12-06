@@ -5,7 +5,7 @@ import express from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-
+import { connectDB } from "@databases";
 import { Routes } from '@/interfaces/routes.interface';
 import errorMiddleware from '@/middlewares/error.middleware';
 
@@ -14,11 +14,16 @@ import errorMiddleware from '@/middlewares/error.middleware';
 class App {
   public app: express.Application;
   public port: string | number;
+  public env: string;
 
   constructor(routes: Routes[]) {
     this.app = express();
     this.port = process.env.PORT || 3000;
-
+    this.env = process.env.NODE_ENV || "development"
+    
+    // NODE_ENV가 test인 경우 DB연결 X
+    this.env !== "test" && this.connectDatabase();
+    
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     this.initializeErrorHandling();
@@ -41,6 +46,9 @@ class App {
     this.app.use(cookieParser());
   }
 
+  private async connectDatabase() {
+    await connectDB();
+  }
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach(route => {

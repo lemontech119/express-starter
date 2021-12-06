@@ -10,3 +10,6 @@ logs
 
 # build
 dist
+
+# typrorm config
+ormconfig.json
