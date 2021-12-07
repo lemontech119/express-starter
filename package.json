@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "NODE_ENV=production node dist/server.js",
     "prebuild": "rm -rf dist",
     "build": "tsc && tsc-alias",
     "build:watch": "tsc -w & tsc-alias -w",
@@ -44,6 +44,7 @@
     "@types/express": "^4.17.13",
     "@types/helmet": "^4.0.0",
     "@types/node": "^16.11.11",
+    "@types/validator": "^13.7.0",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
