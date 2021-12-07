@@ -47,7 +47,12 @@ class App {
   }
 
   private async connectDatabase() {
-    await connectDB();
+    try {
+      await connectDB();
+    } catch (e) {
+      console.log("DB connect error ", e);
+    }
+    
   }
 
   private initializeRoutes(routes: Routes[]) {
